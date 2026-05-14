@@ -304,6 +304,95 @@
     opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:99;
   }
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ============================================================
+     Mobile optimization — phones and small tablets.
+     The desktop layout assumes a wide viewport; below 720px the
+     button cluster, header, and content padding all need adjusting.
+     ============================================================ */
+  @media (max-width:720px){
+    /* Body needs enough bottom padding to scroll past the fixed
+       button cluster. The cluster wraps to 2 rows on phones; that's
+       ~70-80px tall. Adding 120px gives breathing room. */
+    .page{padding:18px 14px 130px}
+    h1{font-size:24px;line-height:1.25}
+    .lede{font-size:15px}
+    header.top{padding-bottom:14px;margin-bottom:20px;gap:10px}
+    .brand-title{font-size:14px}
+    .brand-sub{font-size:11px}
+    .top-meta{font-size:11px;line-height:1.35}
+
+    /* Scope items — change flex layout to block so the dot becomes an
+       inline marker before the label, and the dash-text flows naturally
+       below or after it instead of creating a two-column split. */
+    .scope{flex-direction:column;align-items:stretch;gap:6px;padding:12px 14px}
+    .scope-item{
+      display:block;font-size:13px;line-height:1.45;
+      padding-left:14px;position:relative;
+    }
+    .scope-item .dot{
+      position:absolute;left:0;top:7px;margin:0;
+    }
+    .scope-item strong{display:inline}
+
+    /* Role cards — denser */
+    .role-card{padding:16px}
+    .role-icon{width:36px;height:36px;font-size:12px;margin-bottom:10px}
+    .role-name{font-size:15px}
+    .role-blurb{font-size:13px;margin-bottom:10px}
+
+    /* Detail / prompt cards — tighter padding */
+    h2.role-title{font-size:20px}
+    .role-subtitle{font-size:14px;margin-bottom:20px}
+    .prompt-head{padding:12px 14px;gap:8px;flex-wrap:wrap}
+    .prompt-num{font-size:10px}
+    .prompt-title{font-size:14px;flex:1 1 100%;order:2} /* title to own row */
+    .copy-btn{font-size:11px;padding:6px 10px;order:3;margin-left:auto}
+    .prompt-body{padding:14px}
+    .prompt-text{font-size:12px;padding:12px;line-height:1.5}
+
+    /* CTA — stack the heading above the button */
+    .cta{flex-direction:column;align-items:flex-start;padding:18px 20px;gap:14px}
+    .cta a.btn{width:100%;text-align:center;padding:12px 16px}
+
+    /* Limits section — tighter */
+    .limits{padding:18px}
+    .limits h3{font-size:16px}
+    .limits-intro{font-size:13px}
+    .limits-grid{grid-template-columns:1fr;gap:8px}
+
+    /* Footer — stack the two lines */
+    footer.foot{flex-direction:column;gap:6px;font-size:11px;text-align:center}
+
+    /* Floating button cluster — dock to the bottom edge of the viewport
+       as a horizontal row centered across the width. Slightly translucent
+       backdrop bar so it reads as a control surface, not floating chips
+       on top of content. */
+    .bg-controls{
+      bottom:0;right:0;left:0;
+      justify-content:center;
+      gap:5px;
+      padding:8px 8px 10px;
+      background:linear-gradient(180deg, rgba(247,245,240,0) 0%, rgba(247,245,240,.92) 35%);
+      backdrop-filter:blur(4px);
+    }
+    body.edu-mode .bg-controls{
+      background:linear-gradient(180deg, rgba(21,16,10,0) 0%, rgba(21,16,10,.92) 35%);
+    }
+    .bg-toggle{
+      font-size:10px;padding:6px 10px;
+      flex:0 1 auto;
+    }
+    .bg-toggle .dotled{width:6px;height:6px}
+  }
+
+  /* Very narrow phones (iPhone SE, older Androids in portrait) */
+  @media (max-width:380px){
+    h1{font-size:22px}
+    .bg-toggle{font-size:9px;padding:5px 8px;gap:4px}
+    /* Slightly more bottom padding for the cluster on tiny screens */
+    .page{padding-bottom:140px}
+  }
 </style>
 </head>
 <body>
